@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :artifacts
   resources :tenants do #this project we want to be within tenant / became a nested routes for projects
    resources :projects
   end
