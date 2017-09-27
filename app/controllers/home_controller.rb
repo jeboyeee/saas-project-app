@@ -10,7 +10,8 @@ class HomeController < ApplicationController
       end
       
       @tenant = Tenant.current_tenant
-      @projects = Project.by_plan_and_tenant(@tenant.id) #by_plan.. variable we declared in project.rb
+      # (1 do this 1st) @projects = Project.by_plan_and_tenant(@tenant.id) #by_plan.. variable we declared in project.rb
+      @projects = Project.by_user_plan_and_tenant(@tenant.id, current_user) # (2 after you make user_project)
       params[:tenant_id] = @tenant.id
     end
   end

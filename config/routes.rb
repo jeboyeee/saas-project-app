@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
   
+  resources :user_projects
   resources :artifacts
   resources :tenants do #this project we want to be within tenant / became a nested routes for projects
-   resources :projects
+   resources :projects do
+     get 'users', on: :member #add after user project created
+     put 'add_user', on: :member
+   end
   end
   # root 'home#index' - removed because milia will write its own version of it
   resources :members
