@@ -1,8 +1,11 @@
 class Tenant < ActiveRecord::Base
 
-   acts_as_universal_and_determines_tenant
+  acts_as_universal_and_determines_tenant
   has_many :members, dependent: :destroy
   has_many :projects, dependent: :destroy #cascading destroy, will delete all projects that tenant have if account is closed
+  has_one :payment
+  accepts_nested_attributes_for :payment
+  
   
   def can_create_projects? #used in _list.html.erb
   # if they have no projts and plan is free or the plan is premium can make multiple prjts
